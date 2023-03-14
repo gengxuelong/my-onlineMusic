@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.bDao.MusicDao">
+    <select id="getMusicById" resultType="Music">
+        select * from music where id = #{id}
+    </select>
+    <select id="getMusicListByName" resultType="Music">
+        select * from music where name = #{name}
+    </select>
+    <select id="getMusicByNameAndArtist" resultType="Music">
+        select * from music where name = #{name} and artist = #{artist}
+    </select>
+    <select id="getMusicListByIdList" resultType="Music">
+        select * from music where id in
+        <foreach collection="list" close=")" open="(" separator="," item="item">
+            #{item}
+        </foreach>
+    </select>
+    <update id="updateMusicImage">
+        update music set img_url = #{img_url} where id = #{id}
+    </update>
+    <select id="getAllMusic" resultType="Music">
+        select * from music
+    </select>
+    <insert id="insertMusic" parameterType="Music">
+        insert into music values(#{id},#{name},#{artist},#{img_url},#{audio_url},#{songTimeMinutes})
+    </insert>
+
+</mapper>

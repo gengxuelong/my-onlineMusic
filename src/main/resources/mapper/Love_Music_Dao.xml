@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.bDao.Love_Music_Dao">
+    <select id="getMusicIdListByUserId" resultType="String">
+        select mid from love_music where uid = #{user_id}
+    </select>
+    <insert id="insertLoveMusic">
+        insert into love_music(mid,uid) values (#{music_id},#{user_id})
+    </insert>
+    <delete id="removeLoveMusic">
+        delete from love_music where uid=#{user_id} and mid = #{music_id}
+    </delete>
+    <select id="findNumByUserIdAndMusicId" resultType="int">
+        select count(*) from love_music where uid=#{user_id} and mid = #{music_id}
+    </select>
+</mapper>
